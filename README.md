@@ -22,12 +22,14 @@ This is a modern, fast, and accessible website built with Next.js 14+ and Tailwi
 
 ## Tech Stack
 
-- **Framework:** [Next.js 14+](https://nextjs.org/) (App Router)
+- **Framework:** [Next.js 15.5.5](https://nextjs.org/) (App Router)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Language:** [TypeScript 5](https://www.typescriptlang.org/)
+- **Testing:** [Playwright v1.56.0](https://playwright.dev/) (177 tests)
 - **Fonts:** [Oswald](https://fonts.google.com/specimen/Oswald) (headings), Arial/Helvetica (body)
-- **Hosting:** [Vercel](https://vercel.com/) (planned)
+- **Hosting:** [Vercel](https://vercel.com/)
 - **Version Control:** Git + GitHub
+- **Package Manager:** npm
 
 ## Design System
 
@@ -79,11 +81,17 @@ npm run dev
 
 ### Available Scripts
 
+**Development:**
 - `npm run dev` - Start development server with Turbopack
 - `npm run build` - Build production bundle
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
-- `npm run type-check` - Check TypeScript types (add to package.json)
+
+**Testing:**
+- `npm test` - Run Playwright tests (headless)
+- `npm run test:ui` - Run tests with interactive UI
+- `npm run test:headed` - Run tests in headed mode (watch browser)
+- `npm run test:report` - View HTML test report
 
 ## Project Structure
 
@@ -92,28 +100,52 @@ CPCB Website/
 ├── app/                      # Next.js App Router
 │   ├── components/           # React components
 │   │   ├── layout/          # Header, Footer, Navigation
+│   │   │   ├── Header.tsx   # Responsive header with mobile menu
+│   │   │   └── Footer.tsx   # Site footer
 │   │   ├── sections/        # Page sections (Hero, Features, CTA)
-│   │   └── ui/              # Reusable UI components (Button, etc.)
-│   ├── lib/                 # Utility functions and helpers
-│   ├── types/               # TypeScript type definitions
+│   │   │   ├── Hero.tsx     # Homepage hero section
+│   │   │   ├── Features.tsx # Features showcase
+│   │   │   └── CTA.tsx      # Call-to-action section
+│   │   └── ui/              # Reusable UI components
+│   │       └── Button.tsx   # Button component
 │   ├── schedule/            # Schedule page route
+│   │   └── page.tsx
 │   ├── live-updates/        # Live Updates page route
-│   ├── league/              # League page route
-│   ├── photos/              # Photos page route
+│   │   └── page.tsx
+│   ├── league/              # League standings page route
+│   │   └── page.tsx
+│   ├── photos/              # Photos gallery page route
+│   │   └── page.tsx
 │   ├── blog/                # Blog listing page route
-│   ├── post/[slug]/         # Individual blog post route
+│   │   └── page.tsx
 │   ├── layout.tsx           # Root layout with Header/Footer
 │   ├── page.tsx             # Homepage
 │   └── globals.css          # Global styles & Tailwind config
 ├── public/                   # Static assets
-│   └── images/              # Image files
+│   └── images/              # Image files (future)
+├── tests/                    # Playwright test suite
+│   ├── README.md            # Test documentation
+│   ├── homepage.spec.ts     # Homepage tests (15 tests)
+│   ├── navigation.spec.ts   # Navigation tests (35 tests)
+│   ├── responsive.spec.ts   # Responsive design tests (127 tests)
+│   └── screenshots/         # Test screenshots (9 files)
+├── playwright-report/        # Test result reports
+│   └── README.md            # Report documentation
 ├── scrape/                   # Scraped documentation from original site
-├── old-files/               # Backup of original HTML/CSS/JS
+│   ├── README.md            # Overview of findings
+│   ├── design-system/       # Colors, typography, spacing, branding
+│   ├── features/            # Pages, navigation, interactive elements
+│   ├── content/             # Site structure, content audit
+│   └── technical/           # Integrations, performance, tools
+├── old-files/               # Archived original HTML/CSS/JS files
 ├── package.json             # Dependencies and scripts
+├── playwright.config.ts     # Playwright test configuration
 ├── tsconfig.json            # TypeScript configuration
 ├── next.config.ts           # Next.js configuration
 ├── eslint.config.mjs        # ESLint configuration
-└── README.md                # This file
+├── README.md                # This file
+├── claude.md                # Development guide & project specs
+└── TEST-REPORT.md           # Comprehensive test results
 ```
 
 ## Development Workflow
@@ -122,16 +154,16 @@ This project uses a **feature branch workflow** with two primary branches:
 
 ### Branches
 
-- **`main`** - Production branch (cpcb-mustangs.vercel.app)
-- **`dev`** - Development/staging branch (cpcb-mustangs-dev.vercel.app)
-- **`feature/*`** - Feature branches (merge to dev)
+- **`main-master`** - Production branch (cpcb-website.vercel.app)
+- **`dev-master`** - Development/staging branch (preview URL)
+- **`feature/*`** - Feature branches (merge to dev-master)
 
 ### Workflow
 
 1. **Start new work:**
 ```bash
-git checkout dev
-git pull origin dev
+git checkout dev-master
+git pull origin dev-master
 git checkout -b feature/your-feature-name
 ```
 
@@ -144,18 +176,18 @@ git push -u origin feature/your-feature-name
 
 3. **Test on dev:**
 ```bash
-git checkout dev
+git checkout dev-master
 git merge feature/your-feature-name
-git push origin dev
-# Preview at cpcb-mustangs-dev.vercel.app
+git push origin dev-master
+# Preview at dev deployment URL
 ```
 
 4. **Deploy to production:**
 ```bash
-git checkout main
-git merge dev
-git push origin main
-# Goes live at cpcb-mustangs.vercel.app
+git checkout main-master
+git merge dev-master
+git push origin main-master
+# Goes live at cpcb-website.vercel.app
 ```
 
 ## Deployment
@@ -164,10 +196,10 @@ git push origin main
 
 This project is optimized for deployment on Vercel:
 
-1. Connect your GitHub repository to Vercel
-2. Set production branch to `main`
-3. Enable automatic deployments
-4. Configure custom domain (cpcbmustangs.com)
+1. ✅ Connected GitHub repository to Vercel
+2. ✅ Set production branch to `main-master`
+3. ✅ Enabled automatic deployments for all branches
+4. 🔄 Custom domain configuration (pending: cpcbmustangs.com)
 
 ### Environment Variables
 
@@ -179,18 +211,41 @@ Add these to your Vercel project settings (if needed):
 # NEXT_PUBLIC_API_URL=https://api.example.com
 ```
 
+## Testing
+
+### Test Suite
+
+The project includes a comprehensive Playwright test suite:
+
+- **177 tests** across 3 spec files
+- **3 device configurations** (Desktop, Mobile, Tablet)
+- **9 screenshots** for visual documentation
+- **76.8% pass rate** (136/177 tests passing)
+
+### Running Tests
+
+```bash
+npm test              # Run all tests
+npm run test:ui       # Interactive UI mode
+npm run test:report   # View HTML report
+```
+
+See [tests/README.md](tests/README.md) for detailed documentation.
+
+---
+
 ## Accessibility
 
 This website follows WCAG 2.1 AA guidelines:
 
-- Semantic HTML structure
-- Keyboard navigation support
-- Skip to main content link
-- Focus indicators
-- Color contrast ratios (minimum 4.5:1)
-- Alt text for images
-- ARIA labels where needed
-- Screen reader compatible
+- ✅ Semantic HTML structure
+- ✅ Keyboard navigation support
+- ✅ Skip to main content link
+- ✅ Focus indicators on interactive elements
+- ✅ Color contrast ratios (minimum 4.5:1)
+- ⏳ Alt text for images (when images are added)
+- ✅ ARIA labels where needed
+- ✅ Screen reader compatible navigation
 
 ## Performance Targets
 
@@ -243,8 +298,15 @@ This is a private project for Cal Poly Club Baseball. For questions or contribut
 
 ## Project History
 
-- **October 2025:** Phase 0 completed - Repository setup
-- **October 2025:** Phase 1 started - Next.js/Tailwind migration
+- **October 2025:** Phase 0 completed - Repository setup, Git workflow
+- **October 2025:** Phase 1 active development
+  - ✅ Comprehensive site scraping (15 markdown files, 8,194+ lines)
+  - ✅ Next.js 15 + TypeScript migration complete
+  - ✅ Tailwind CSS v4 configuration with CPCB brand colors
+  - ✅ All core pages built (Home, Schedule, Live Updates, League, Photos, Blog)
+  - ✅ Responsive navigation with mobile menu
+  - ✅ Playwright testing infrastructure (177 tests)
+  - 🔄 Content population in progress
 - **Target Launch:** TBD
 
 ## Resources
@@ -267,6 +329,31 @@ This is a private project for Cal Poly Club Baseball. For questions or contribut
 - GameChanger for live game statistics
 - Vercel for hosting platform
 - Next.js team for the framework
+
+---
+
+---
+
+## Development Status
+
+**Current Phase:** Phase 1 - Active Development (80% complete)
+
+**Latest Updates (October 15, 2025):**
+- ✅ Site scraping and analysis complete
+- ✅ Next.js migration complete
+- ✅ All core pages built
+- ✅ Testing infrastructure operational
+- 🔄 Content population in progress
+- 🔄 GameChanger API integration research
+
+**Next Milestones:**
+- [ ] Complete content population
+- [ ] Implement photo gallery
+- [ ] Add roster/player profiles
+- [ ] GameChanger integration
+- [ ] Production deployment with custom domain
+
+See [claude.md](claude.md) for detailed development specifications.
 
 ---
 

@@ -103,31 +103,31 @@
 ### Branch Structure
 This project uses a **feature branch workflow** with two primary branches:
 
-- **`main`** - Production branch
-  - Deployed to: `cpcb-mustangs.vercel.app` (production domain)
+- **`main-master`** - Production branch
+  - Deployed to: `cpcb-website.vercel.app` (production domain)
   - Protected branch (merge via pull requests only)
   - Only stable, tested code
 
-- **`dev`** - Development/staging branch
-  - Deployed to: `cpcb-mustangs-dev.vercel.app` (preview domain)
+- **`dev-master`** - Development/staging branch
+  - Deployed to: `https://cpcb-website-git-dev-master-nicolo-diferdinandos-projects.vercel.app/` (preview domain)
   - Integration branch for testing features
   - All feature branches merge here first
 
 - **`feature/*`** - Feature branches
-  - Created from `dev` for individual features/fixes
+  - Created from `dev-master` for individual features/fixes
   - Example: `feature/game-schedule`, `feature/navbar`, `fix/mobile-bug`
   - Get automatic Vercel preview deployments
-  - Merged back to `dev` when complete
+  - Merged back to `dev-master` when complete
 
 ### Development Workflow
 
 #### Starting New Work
 ```bash
-# Switch to dev branch
-git checkout dev
+# Switch to dev-master branch
+git checkout dev-master
 
 # Pull latest changes
-git pull origin dev
+git pull origin dev-master
 
 # Create feature branch
 git checkout -b feature/your-feature-name
@@ -145,51 +145,53 @@ git push -u origin feature/your-feature-name
 
 #### Merging to Dev (Testing)
 ```bash
-# Switch to dev
-git checkout dev
+# Switch to dev-master
+git checkout dev-master
 
 # Merge feature branch
 git merge feature/your-feature-name
 
 # Push to trigger dev deployment
-git push origin dev
+git push origin dev-master
 
-# Preview changes at cpcb-mustangs-dev.vercel.app
+# Preview changes at https://cpcb-website-git-dev-master-nicolo-diferdinandos-projects.vercel.app/
 ```
 
 #### Deploying to Production
 ```bash
-# Once tested on dev, switch to main
-git checkout main
+# Once tested on dev-master, switch to main-master
+git checkout main-master
 
-# Merge dev branch
-git merge dev
+# Merge dev-master branch
+git merge dev-master
 
 # Push to trigger production deployment
-git push origin main
+git push origin main-master
 
-# Site goes live at cpcb-mustangs.vercel.app
+# Site goes live at cpcb-website.vercel.app
 ```
 
 ### Deployment Configuration
 
 **Vercel Settings:**
-- Production Branch: `main`
+- Production Branch: `main-master`
 - Automatic deployments enabled for all branches
 - Each PR gets unique preview URL
-- Custom domains assigned to production deployments
+- Custom domains assigned to production and development deployments
+  - `main-master` → `cpcb-website.vercel.app`
+  - `dev-master` → `https://cpcb-website-git-dev-master-nicolo-diferdinandos-projects.vercel.app`
 
 **GitHub Protection Rules (Recommended):**
 ```
-main branch:
+main-master branch:
 - Require pull request reviews before merging
 - Require status checks to pass
 - No direct pushes (merge via PR only)
 ```
 
 ### Best Practices
-1. Always work in feature branches, never directly in `dev` or `main`
-2. Test thoroughly in `dev` before merging to `main`
+1. Always work in feature branches, never directly in `dev-master` or `main-master`
+2. Test thoroughly in `dev-master` before merging to `main-master`
 3. Use descriptive branch names: `feature/`, `fix/`, `enhancement/`
 4. Write clear commit messages
 5. Use pull requests for code review (even solo development)
@@ -329,10 +331,10 @@ CPCB Website/
 
 - **Current Site:** cpcbmustangs.com (currently down)
 - **Repository:** https://github.com/nicodiferd/CPCB-Website
-- **Production Domain:** cpcb-mustangs.vercel.app (pending Vercel setup)
-- **Dev Domain:** cpcb-mustangs-dev.vercel.app (pending Vercel setup)
+- **Production Domain:** cpcb-website.vercel.app
+- **Dev Domain:** https://cpcb-website-git-dev-master-nicolo-diferdinandos-projects.vercel.app/
 - **GameChanger:** https://gc.com/ (API documentation TBD)
 
 ---
 
-*Last Updated: 2025-10-14*
+*Last Updated: 2025-10-15*

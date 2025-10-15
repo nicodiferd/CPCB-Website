@@ -48,13 +48,57 @@ To view the website locally:
 2. Open `index.html` in your web browser
 3. No build process required for basic HTML/CSS/JS
 
+## Git Workflow & Development
+
+This project uses a **feature branch workflow** for version control and deployment.
+
+### Branch Structure
+- **`main`** - Production branch → Deployed to production domain
+- **`dev`** - Development branch → Deployed to dev/staging domain
+- **`feature/*`** - Feature branches → Get automatic preview deployments
+
+### Quick Start Workflow
+
+**Starting a new feature:**
+```bash
+git checkout dev
+git pull origin dev
+git checkout -b feature/your-feature-name
+```
+
+**Working and committing:**
+```bash
+git add .
+git commit -m "Your descriptive commit message"
+git push -u origin feature/your-feature-name
+```
+
+**Merging to dev for testing:**
+```bash
+git checkout dev
+git merge feature/your-feature-name
+git push origin dev
+```
+
+**Deploying to production:**
+```bash
+git checkout main
+git merge dev
+git push origin main
+```
+
+### Deployment
+- **Production:** `main` branch auto-deploys to Vercel
+- **Development:** `dev` branch auto-deploys to Vercel preview
+- **Features:** Each feature branch gets its own preview URL
+
 ## Future Development
 
 As the project grows, we may consider:
 - Adding a static site generator (e.g., Eleventy, Hugo)
 - Implementing a CMS for easier content management
 - Adding a build process for optimization
-- Deploying to a hosting service (GitHub Pages, Netlify, Vercel, etc.)
+- Integration with GameChanger API for live stats
 
 ## Contributing
 

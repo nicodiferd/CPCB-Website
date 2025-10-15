@@ -36,6 +36,8 @@
 - [x] Create basic project structure
 - [x] Set up initial HTML/CSS/JS files
 - [x] Create project documentation
+- [x] Set up dev/prod branch workflow
+- [x] Push to GitHub repository
 
 ### Phase 1: Analysis & Replication
 **Status:** Pending (waiting for cpcbmustangs.com to come back online)
@@ -85,13 +87,113 @@
 ### Current
 - **Frontend:** HTML5, CSS3, Vanilla JavaScript
 - **Version Control:** Git
-- **Hosting:** TBD
+- **Hosting:** Vercel
+- **Deployment:** Continuous deployment via GitHub branches
 
 ### Future Considerations
 - Static Site Generator (Eleventy, Hugo, Astro?)
 - Build/bundling tools (Vite, Webpack?)
 - CMS integration (if needed)
 - Analytics (Google Analytics, Plausible?)
+
+---
+
+## Git Workflow & Deployment Strategy
+
+### Branch Structure
+This project uses a **feature branch workflow** with two primary branches:
+
+- **`main`** - Production branch
+  - Deployed to: `cpcb-mustangs.vercel.app` (production domain)
+  - Protected branch (merge via pull requests only)
+  - Only stable, tested code
+
+- **`dev`** - Development/staging branch
+  - Deployed to: `cpcb-mustangs-dev.vercel.app` (preview domain)
+  - Integration branch for testing features
+  - All feature branches merge here first
+
+- **`feature/*`** - Feature branches
+  - Created from `dev` for individual features/fixes
+  - Example: `feature/game-schedule`, `feature/navbar`, `fix/mobile-bug`
+  - Get automatic Vercel preview deployments
+  - Merged back to `dev` when complete
+
+### Development Workflow
+
+#### Starting New Work
+```bash
+# Switch to dev branch
+git checkout dev
+
+# Pull latest changes
+git pull origin dev
+
+# Create feature branch
+git checkout -b feature/your-feature-name
+```
+
+#### Working on a Feature
+```bash
+# Make changes, then commit
+git add .
+git commit -m "Descriptive commit message"
+
+# Push to GitHub (creates PR preview)
+git push -u origin feature/your-feature-name
+```
+
+#### Merging to Dev (Testing)
+```bash
+# Switch to dev
+git checkout dev
+
+# Merge feature branch
+git merge feature/your-feature-name
+
+# Push to trigger dev deployment
+git push origin dev
+
+# Preview changes at cpcb-mustangs-dev.vercel.app
+```
+
+#### Deploying to Production
+```bash
+# Once tested on dev, switch to main
+git checkout main
+
+# Merge dev branch
+git merge dev
+
+# Push to trigger production deployment
+git push origin main
+
+# Site goes live at cpcb-mustangs.vercel.app
+```
+
+### Deployment Configuration
+
+**Vercel Settings:**
+- Production Branch: `main`
+- Automatic deployments enabled for all branches
+- Each PR gets unique preview URL
+- Custom domains assigned to production deployments
+
+**GitHub Protection Rules (Recommended):**
+```
+main branch:
+- Require pull request reviews before merging
+- Require status checks to pass
+- No direct pushes (merge via PR only)
+```
+
+### Best Practices
+1. Always work in feature branches, never directly in `dev` or `main`
+2. Test thoroughly in `dev` before merging to `main`
+3. Use descriptive branch names: `feature/`, `fix/`, `enhancement/`
+4. Write clear commit messages
+5. Use pull requests for code review (even solo development)
+6. Delete feature branches after merging
 
 ---
 
@@ -226,7 +328,9 @@ CPCB Website/
 ## Resources & Links
 
 - **Current Site:** cpcbmustangs.com (currently down)
-- **Repository:** Local (not yet pushed to remote)
+- **Repository:** https://github.com/nicodiferd/CPCB-Website
+- **Production Domain:** cpcb-mustangs.vercel.app (pending Vercel setup)
+- **Dev Domain:** cpcb-mustangs-dev.vercel.app (pending Vercel setup)
 - **GameChanger:** https://gc.com/ (API documentation TBD)
 
 ---

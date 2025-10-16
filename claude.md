@@ -415,7 +415,7 @@ CPCB Website/
 
 ## Resources & Links
 
-- **Current Site:** cpcbmustangs.com (currently down)
+- **Current Site:** cpcbmustangs.com 
 - **Repository:** https://github.com/nicodiferd/CPCB-Website
 - **Production Domain:** cpcb-website.vercel.app
 - **Dev Domain:** https://cpcb-website-git-dev-master-nicolo-diferdinandos-projects.vercel.app/

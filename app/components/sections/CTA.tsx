@@ -2,7 +2,7 @@ import Button from '../ui/Button';
 
 const CTA = () => {
   return (
-    <section className="bg-[#FFE395] py-16">
+    <section className="bg-[#FFE395] py-20 md:py-24">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[#003831] mb-4">
           Stay Connected with the Mustangs

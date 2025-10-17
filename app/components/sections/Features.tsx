@@ -71,13 +71,14 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 md:py-28 bg-white">
       <div className="container mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#003831] mb-4">
             What We Offer
           </h2>
+          <div className="w-24 h-1 bg-[#FFE395] mx-auto mb-6"></div>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Everything you need to stay connected with Cal Poly Club Baseball
           </p>

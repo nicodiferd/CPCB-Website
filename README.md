@@ -11,6 +11,7 @@ This is a modern, fast, and accessible website built with Next.js 14+ and Tailwi
 ## Features
 
 - **Homepage** - Hero section with team achievements and quick links
+- **About Us Section** - Comprehensive program history, mission, and highlights
 - **Game Schedule** - Full season schedule with dates, opponents, and results
 - **Live Updates** - Real-time game updates via GameChanger integration
 - **League Standings** - NCBA Division 1 SoPac West conference standings
@@ -102,8 +103,9 @@ CPCB Website/
 │   │   ├── layout/          # Header, Footer, Navigation
 │   │   │   ├── Header.tsx   # Responsive header with mobile menu
 │   │   │   └── Footer.tsx   # Site footer
-│   │   ├── sections/        # Page sections (Hero, Features, CTA)
+│   │   ├── sections/        # Page sections (Hero, AboutUs, Features, CTA)
 │   │   │   ├── Hero.tsx     # Homepage hero section
+│   │   │   ├── AboutUs.tsx  # About Us section with program info
 │   │   │   ├── Features.tsx # Features showcase
 │   │   │   └── CTA.tsx      # Call-to-action section
 │   │   └── ui/              # Reusable UI components
@@ -338,7 +340,9 @@ This is a private project for Cal Poly Club Baseball. For questions or contribut
 
 **Current Phase:** Phase 1 - Active Development (80% complete)
 
-**Latest Updates (October 15, 2025):**
+**Latest Updates (October 17, 2025):**
+- ✅ Homepage refactored with comprehensive About Us section
+- ✅ Improved page scrollability and visual hierarchy
 - ✅ Site scraping and analysis complete
 - ✅ Next.js migration complete
 - ✅ All core pages built

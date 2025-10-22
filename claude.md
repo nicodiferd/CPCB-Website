@@ -427,6 +427,19 @@ CPCB Website/
 
 ## Recent Updates
 
+### October 22, 2025
+- ✅ Fixed JSX compliance: Escaped apostrophes in About Us component
+- ✅ All homepage changes successfully deployed to dev-master
+
+### October 17, 2025
+- ✅ Refactored homepage with new About Us section
+- ✅ Created comprehensive About Us component with program history and highlights
+- ✅ Restructured homepage layout: Hero → About Us → What We Offer → CTA
+- ✅ Added detailed program information (established 2010, season schedule, roster size)
+- ✅ Improved page scrollability with enhanced spacing between sections
+- ✅ Removed duplicate stats and replaced with unique, contextual information
+- ✅ Added decorative dividers and improved visual hierarchy
+
 ### October 15, 2025
 - ✅ Completed comprehensive site scraping and analysis (15 markdown files)
 - ✅ Migrated from vanilla HTML/CSS to Next.js 15 + TypeScript
@@ -452,5 +465,5 @@ CPCB Website/
 
 ---
 
-*Last Updated: October 15, 2025*
-*Version: 1.1.0 (Phase 1 - Active Development)*
+*Last Updated: October 22, 2025*
+*Version: 1.2.1 (Phase 1 - Active Development)*

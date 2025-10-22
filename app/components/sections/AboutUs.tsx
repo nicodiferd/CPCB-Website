@@ -15,7 +15,7 @@ const AboutUs = () => {
           {/* Left Column - Text Content */}
           <div className="space-y-6">
             <h3 className="text-2xl md:text-3xl font-bold text-[#003831]">
-              Cal Poly's Club Baseball Program
+              Cal Poly&apos;s Club Baseball Program
             </h3>
 
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -38,7 +38,7 @@ const AboutUs = () => {
             </p>
 
             <p className="text-lg text-gray-700 leading-relaxed">
-              With a rich history of success, we've earned
+              With a rich history of success, we&apos;ve earned
               <strong> 2 Regional Championships</strong> and
               <strong> 8 Division Championships</strong>, establishing ourselves
               as one of the premier club baseball programs in the conference.
